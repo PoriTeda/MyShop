@@ -1,0 +1,7 @@
+D:\DotNet\WebApplication1\ProductDataAccess\bin\Debug\ProductDataAccess.dll.config
+D:\DotNet\WebApplication1\ProductDataAccess\bin\Debug\ProductDataAccess.dll
+D:\DotNet\WebApplication1\ProductDataAccess\bin\Debug\ProductDataAccess.pdb
+D:\DotNet\WebApplication1\ProductDataAccess\bin\Debug\EntityFramework.dll
+D:\DotNet\WebApplication1\ProductDataAccess\bin\Debug\EntityFramework.xml
+D:\DotNet\WebApplication1\ProductDataAccess\obj\Debug\ProductDataAccess.dll
+D:\DotNet\WebApplication1\ProductDataAccess\obj\Debug\ProductDataAccess.pdb

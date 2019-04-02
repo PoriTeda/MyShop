@@ -1,0 +1,540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ShopDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ShopDBModelStoreContainer">
+          <EntitySet Name="ADMIN" EntityType="ShopDBModel.Store.ADMIN" store:Type="Tables" store:Schema="dbo" store:Name="ADMIN">
+            <DefiningQuery>SELECT 
+      [ADMIN].[MaAD] AS [MaAD], 
+      [ADMIN].[TenAD] AS [TenAD], 
+      [ADMIN].[NgaySinhAD] AS [NgaySinhAD], 
+      [ADMIN].[UserName] AS [UserName], 
+      [ADMIN].[Pass] AS [Pass], 
+      [ADMIN].[Email] AS [Email]
+      FROM [dbo].[ADMIN] AS [ADMIN]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CHITIETDONTHANG" EntityType="ShopDBModel.Store.CHITIETDONTHANG" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DONDATHANG" EntityType="ShopDBModel.Store.DONDATHANG" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="KHACHHANG" EntityType="ShopDBModel.Store.KHACHHANG" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MATHANG" EntityType="ShopDBModel.Store.MATHANG" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PHANLOAIHANG" EntityType="ShopDBModel.Store.PHANLOAIHANG" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="THUONGHIEU" EntityType="ShopDBModel.Store.THUONGHIEU" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="XUHUONG" EntityType="ShopDBModel.Store.XUHUONG" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__MATHANG__MaXuHuo__3D5E1FD2" Association="ShopDBModel.Store.FK__MATHANG__MaXuHuo__3D5E1FD2">
+            <End Role="XUHUONG" EntitySet="XUHUONG" />
+            <End Role="MATHANG" EntitySet="MATHANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donhang" Association="ShopDBModel.Store.FK_Donhang">
+            <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+            <End Role="CHITIETDONTHANG" EntitySet="CHITIETDONTHANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Khachhang" Association="ShopDBModel.Store.FK_Khachhang">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaLoai" Association="ShopDBModel.Store.FK_MaLoai">
+            <End Role="PHANLOAIHANG" EntitySet="PHANLOAIHANG" />
+            <End Role="MATHANG" EntitySet="MATHANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaTH" Association="ShopDBModel.Store.FK_MaTH">
+            <End Role="THUONGHIEU" EntitySet="THUONGHIEU" />
+            <End Role="MATHANG" EntitySet="MATHANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatHang" Association="ShopDBModel.Store.FK_MatHang">
+            <End Role="MATHANG" EntitySet="MATHANG" />
+            <End Role="CHITIETDONTHANG" EntitySet="CHITIETDONTHANG" />
+          </AssociationSet>
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'FASHIONSHOP.dbo.ADMIN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="MaAD" />
+            <PropertyRef Name="TenAD" />
+            <PropertyRef Name="Pass" />
+          </Key>
+          <Property Name="MaAD" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TenAD" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="NgaySinhAD" Type="datetime" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Pass" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CHITIETDONTHANG">
+          <Key>
+            <PropertyRef Name="MaDonHang" />
+            <PropertyRef Name="MaHang" />
+          </Key>
+          <Property Name="MaDonHang" Type="int" Nullable="false" />
+          <Property Name="MaHang" Type="int" Nullable="false" />
+          <Property Name="Soluong" Type="int" />
+          <Property Name="Dongia" Type="decimal" />
+        </EntityType>
+        <EntityType Name="DONDATHANG">
+          <Key>
+            <PropertyRef Name="MaDonHang" />
+          </Key>
+          <Property Name="MaDonHang" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Dathanhtoan" Type="bit" />
+          <Property Name="Tinhtranggiaohang" Type="bit" />
+          <Property Name="Ngaydat" Type="datetime" />
+          <Property Name="Ngaygiao" Type="datetime" />
+          <Property Name="MaKH" Type="int" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MaKH" />
+          </Key>
+          <Property Name="MaKH" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Taikhoan" Type="varchar" MaxLength="50" />
+          <Property Name="Matkhau" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="DiachiKH" Type="nvarchar" MaxLength="200" />
+          <Property Name="DienthoaiKH" Type="varchar" MaxLength="50" />
+          <Property Name="Ngaysinh" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MATHANG">
+          <Key>
+            <PropertyRef Name="MaHang" />
+          </Key>
+          <Property Name="MaHang" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TenHang" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Size" Type="varchar" MaxLength="10" />
+          <Property Name="Giaban" Type="decimal" />
+          <Property Name="Mota" Type="nvarchar(max)" />
+          <Property Name="AnhMH" Type="varchar" MaxLength="50" />
+          <Property Name="Ngaycapnhat" Type="datetime" />
+          <Property Name="Soluongton" Type="int" />
+          <Property Name="MaLoai" Type="int" />
+          <Property Name="MaTH" Type="int" />
+          <Property Name="MaXuHuong" Type="int" />
+        </EntityType>
+        <EntityType Name="PHANLOAIHANG">
+          <Key>
+            <PropertyRef Name="MaLoai" />
+          </Key>
+          <Property Name="MaLoai" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TenLoaiHang" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="THUONGHIEU">
+          <Key>
+            <PropertyRef Name="MaTH" />
+          </Key>
+          <Property Name="MaTH" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TenTH" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Diachi" Type="nvarchar" MaxLength="200" />
+          <Property Name="DienThoai" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="XUHUONG">
+          <Key>
+            <PropertyRef Name="XuHuongId" />
+          </Key>
+          <Property Name="XuHuongId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="XuHuongNam" Type="nvarchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK__MATHANG__MaXuHuo__3D5E1FD2">
+          <End Role="XUHUONG" Type="ShopDBModel.Store.XUHUONG" Multiplicity="0..1" />
+          <End Role="MATHANG" Type="ShopDBModel.Store.MATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="XUHUONG">
+              <PropertyRef Name="XuHuongId" />
+            </Principal>
+            <Dependent Role="MATHANG">
+              <PropertyRef Name="MaXuHuong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donhang">
+          <End Role="DONDATHANG" Type="ShopDBModel.Store.DONDATHANG" Multiplicity="1" />
+          <End Role="CHITIETDONTHANG" Type="ShopDBModel.Store.CHITIETDONTHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONDATHANG">
+              <PropertyRef Name="MaDonHang" />
+            </Principal>
+            <Dependent Role="CHITIETDONTHANG">
+              <PropertyRef Name="MaDonHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Khachhang">
+          <End Role="KHACHHANG" Type="ShopDBModel.Store.KHACHHANG" Multiplicity="0..1" />
+          <End Role="DONDATHANG" Type="ShopDBModel.Store.DONDATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="DONDATHANG">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaLoai">
+          <End Role="PHANLOAIHANG" Type="ShopDBModel.Store.PHANLOAIHANG" Multiplicity="0..1" />
+          <End Role="MATHANG" Type="ShopDBModel.Store.MATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHANLOAIHANG">
+              <PropertyRef Name="MaLoai" />
+            </Principal>
+            <Dependent Role="MATHANG">
+              <PropertyRef Name="MaLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaTH">
+          <End Role="THUONGHIEU" Type="ShopDBModel.Store.THUONGHIEU" Multiplicity="0..1" />
+          <End Role="MATHANG" Type="ShopDBModel.Store.MATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THUONGHIEU">
+              <PropertyRef Name="MaTH" />
+            </Principal>
+            <Dependent Role="MATHANG">
+              <PropertyRef Name="MaTH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatHang">
+          <End Role="MATHANG" Type="ShopDBModel.Store.MATHANG" Multiplicity="1" />
+          <End Role="CHITIETDONTHANG" Type="ShopDBModel.Store.CHITIETDONTHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MATHANG">
+              <PropertyRef Name="MaHang" />
+            </Principal>
+            <Dependent Role="CHITIETDONTHANG">
+              <PropertyRef Name="MaHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShopDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ShopDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMINs" EntityType="ShopDBModel.ADMIN" />
+          <EntitySet Name="CHITIETDONTHANGs" EntityType="ShopDBModel.CHITIETDONTHANG" />
+          <EntitySet Name="DONDATHANGs" EntityType="ShopDBModel.DONDATHANG" />
+          <EntitySet Name="KHACHHANGs" EntityType="ShopDBModel.KHACHHANG" />
+          <EntitySet Name="MATHANGs" EntityType="ShopDBModel.MATHANG" />
+          <EntitySet Name="PHANLOAIHANGs" EntityType="ShopDBModel.PHANLOAIHANG" />
+          <EntitySet Name="THUONGHIEUx" EntityType="ShopDBModel.THUONGHIEU" />
+          <EntitySet Name="XUHUONGs" EntityType="ShopDBModel.XUHUONG" />
+          <AssociationSet Name="FK_Donhang" Association="ShopDBModel.FK_Donhang">
+            <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+            <End Role="CHITIETDONTHANG" EntitySet="CHITIETDONTHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatHang" Association="ShopDBModel.FK_MatHang">
+            <End Role="MATHANG" EntitySet="MATHANGs" />
+            <End Role="CHITIETDONTHANG" EntitySet="CHITIETDONTHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Khachhang" Association="ShopDBModel.FK_Khachhang">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MATHANG__MaXuHuo__3D5E1FD2" Association="ShopDBModel.FK__MATHANG__MaXuHuo__3D5E1FD2">
+            <End Role="XUHUONG" EntitySet="XUHUONGs" />
+            <End Role="MATHANG" EntitySet="MATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaLoai" Association="ShopDBModel.FK_MaLoai">
+            <End Role="PHANLOAIHANG" EntitySet="PHANLOAIHANGs" />
+            <End Role="MATHANG" EntitySet="MATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaTH" Association="ShopDBModel.FK_MaTH">
+            <End Role="THUONGHIEU" EntitySet="THUONGHIEUx" />
+            <End Role="MATHANG" EntitySet="MATHANGs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="MaAD" />
+            <PropertyRef Name="TenAD" />
+            <PropertyRef Name="Pass" />
+          </Key>
+          <Property Name="MaAD" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TenAD" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="NgaySinhAD" Type="DateTime" Precision="3" />
+          <Property Name="UserName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Pass" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CHITIETDONTHANG">
+          <Key>
+            <PropertyRef Name="MaDonHang" />
+            <PropertyRef Name="MaHang" />
+          </Key>
+          <Property Name="MaDonHang" Type="Int32" Nullable="false" />
+          <Property Name="MaHang" Type="Int32" Nullable="false" />
+          <Property Name="Soluong" Type="Int32" />
+          <Property Name="Dongia" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="DONDATHANG" Relationship="ShopDBModel.FK_Donhang" FromRole="CHITIETDONTHANG" ToRole="DONDATHANG" />
+          <NavigationProperty Name="MATHANG" Relationship="ShopDBModel.FK_MatHang" FromRole="CHITIETDONTHANG" ToRole="MATHANG" />
+        </EntityType>
+        <EntityType Name="DONDATHANG">
+          <Key>
+            <PropertyRef Name="MaDonHang" />
+          </Key>
+          <Property Name="MaDonHang" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Dathanhtoan" Type="Boolean" />
+          <Property Name="Tinhtranggiaohang" Type="Boolean" />
+          <Property Name="Ngaydat" Type="DateTime" Precision="3" />
+          <Property Name="Ngaygiao" Type="DateTime" Precision="3" />
+          <Property Name="MaKH" Type="Int32" />
+          <NavigationProperty Name="CHITIETDONTHANGs" Relationship="ShopDBModel.FK_Donhang" FromRole="DONDATHANG" ToRole="CHITIETDONTHANG" />
+          <NavigationProperty Name="KHACHHANG" Relationship="ShopDBModel.FK_Khachhang" FromRole="DONDATHANG" ToRole="KHACHHANG" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MaKH" />
+          </Key>
+          <Property Name="MaKH" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Taikhoan" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Matkhau" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="DiachiKH" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="DienthoaiKH" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Ngaysinh" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DONDATHANGs" Relationship="ShopDBModel.FK_Khachhang" FromRole="KHACHHANG" ToRole="DONDATHANG" />
+        </EntityType>
+        <EntityType Name="MATHANG">
+          <Key>
+            <PropertyRef Name="MaHang" />
+          </Key>
+          <Property Name="MaHang" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TenHang" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Size" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Giaban" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Mota" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="AnhMH" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Ngaycapnhat" Type="DateTime" Precision="3" />
+          <Property Name="Soluongton" Type="Int32" />
+          <Property Name="MaLoai" Type="Int32" />
+          <Property Name="MaTH" Type="Int32" />
+          <Property Name="MaXuHuong" Type="Int32" />
+          <NavigationProperty Name="CHITIETDONTHANGs" Relationship="ShopDBModel.FK_MatHang" FromRole="MATHANG" ToRole="CHITIETDONTHANG" />
+          <NavigationProperty Name="XUHUONG" Relationship="ShopDBModel.FK__MATHANG__MaXuHuo__3D5E1FD2" FromRole="MATHANG" ToRole="XUHUONG" />
+          <NavigationProperty Name="PHANLOAIHANG" Relationship="ShopDBModel.FK_MaLoai" FromRole="MATHANG" ToRole="PHANLOAIHANG" />
+          <NavigationProperty Name="THUONGHIEU" Relationship="ShopDBModel.FK_MaTH" FromRole="MATHANG" ToRole="THUONGHIEU" />
+        </EntityType>
+        <EntityType Name="PHANLOAIHANG">
+          <Key>
+            <PropertyRef Name="MaLoai" />
+          </Key>
+          <Property Name="MaLoai" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLoaiHang" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="MATHANGs" Relationship="ShopDBModel.FK_MaLoai" FromRole="PHANLOAIHANG" ToRole="MATHANG" />
+        </EntityType>
+        <EntityType Name="THUONGHIEU">
+          <Key>
+            <PropertyRef Name="MaTH" />
+          </Key>
+          <Property Name="MaTH" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TenTH" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Diachi" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="DienThoai" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="MATHANGs" Relationship="ShopDBModel.FK_MaTH" FromRole="THUONGHIEU" ToRole="MATHANG" />
+        </EntityType>
+        <EntityType Name="XUHUONG">
+          <Key>
+            <PropertyRef Name="XuHuongId" />
+          </Key>
+          <Property Name="XuHuongId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="XuHuongNam" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="MATHANGs" Relationship="ShopDBModel.FK__MATHANG__MaXuHuo__3D5E1FD2" FromRole="XUHUONG" ToRole="MATHANG" />
+        </EntityType>
+        <Association Name="FK_Donhang">
+          <End Role="DONDATHANG" Type="ShopDBModel.DONDATHANG" Multiplicity="1" />
+          <End Role="CHITIETDONTHANG" Type="ShopDBModel.CHITIETDONTHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONDATHANG">
+              <PropertyRef Name="MaDonHang" />
+            </Principal>
+            <Dependent Role="CHITIETDONTHANG">
+              <PropertyRef Name="MaDonHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatHang">
+          <End Role="MATHANG" Type="ShopDBModel.MATHANG" Multiplicity="1" />
+          <End Role="CHITIETDONTHANG" Type="ShopDBModel.CHITIETDONTHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MATHANG">
+              <PropertyRef Name="MaHang" />
+            </Principal>
+            <Dependent Role="CHITIETDONTHANG">
+              <PropertyRef Name="MaHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Khachhang">
+          <End Role="KHACHHANG" Type="ShopDBModel.KHACHHANG" Multiplicity="0..1" />
+          <End Role="DONDATHANG" Type="ShopDBModel.DONDATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="DONDATHANG">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MATHANG__MaXuHuo__3D5E1FD2">
+          <End Role="XUHUONG" Type="ShopDBModel.XUHUONG" Multiplicity="0..1" />
+          <End Role="MATHANG" Type="ShopDBModel.MATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="XUHUONG">
+              <PropertyRef Name="XuHuongId" />
+            </Principal>
+            <Dependent Role="MATHANG">
+              <PropertyRef Name="MaXuHuong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaLoai">
+          <End Role="PHANLOAIHANG" Type="ShopDBModel.PHANLOAIHANG" Multiplicity="0..1" />
+          <End Role="MATHANG" Type="ShopDBModel.MATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHANLOAIHANG">
+              <PropertyRef Name="MaLoai" />
+            </Principal>
+            <Dependent Role="MATHANG">
+              <PropertyRef Name="MaLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaTH">
+          <End Role="THUONGHIEU" Type="ShopDBModel.THUONGHIEU" Multiplicity="0..1" />
+          <End Role="MATHANG" Type="ShopDBModel.MATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THUONGHIEU">
+              <PropertyRef Name="MaTH" />
+            </Principal>
+            <Dependent Role="MATHANG">
+              <PropertyRef Name="MaTH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShopDBModelStoreContainer" CdmEntityContainer="ShopDBEntities">
+          <EntitySetMapping Name="ADMINs">
+            <EntityTypeMapping TypeName="ShopDBModel.ADMIN">
+              <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="MaAD" ColumnName="MaAD" />
+                <ScalarProperty Name="TenAD" ColumnName="TenAD" />
+                <ScalarProperty Name="NgaySinhAD" ColumnName="NgaySinhAD" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHITIETDONTHANGs">
+            <EntityTypeMapping TypeName="ShopDBModel.CHITIETDONTHANG">
+              <MappingFragment StoreEntitySet="CHITIETDONTHANG">
+                <ScalarProperty Name="MaDonHang" ColumnName="MaDonHang" />
+                <ScalarProperty Name="MaHang" ColumnName="MaHang" />
+                <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+                <ScalarProperty Name="Dongia" ColumnName="Dongia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DONDATHANGs">
+            <EntityTypeMapping TypeName="ShopDBModel.DONDATHANG">
+              <MappingFragment StoreEntitySet="DONDATHANG">
+                <ScalarProperty Name="MaDonHang" ColumnName="MaDonHang" />
+                <ScalarProperty Name="Dathanhtoan" ColumnName="Dathanhtoan" />
+                <ScalarProperty Name="Tinhtranggiaohang" ColumnName="Tinhtranggiaohang" />
+                <ScalarProperty Name="Ngaydat" ColumnName="Ngaydat" />
+                <ScalarProperty Name="Ngaygiao" ColumnName="Ngaygiao" />
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHACHHANGs">
+            <EntityTypeMapping TypeName="ShopDBModel.KHACHHANG">
+              <MappingFragment StoreEntitySet="KHACHHANG">
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="Taikhoan" ColumnName="Taikhoan" />
+                <ScalarProperty Name="Matkhau" ColumnName="Matkhau" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DiachiKH" ColumnName="DiachiKH" />
+                <ScalarProperty Name="DienthoaiKH" ColumnName="DienthoaiKH" />
+                <ScalarProperty Name="Ngaysinh" ColumnName="Ngaysinh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MATHANGs">
+            <EntityTypeMapping TypeName="ShopDBModel.MATHANG">
+              <MappingFragment StoreEntitySet="MATHANG">
+                <ScalarProperty Name="MaHang" ColumnName="MaHang" />
+                <ScalarProperty Name="TenHang" ColumnName="TenHang" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Giaban" ColumnName="Giaban" />
+                <ScalarProperty Name="Mota" ColumnName="Mota" />
+                <ScalarProperty Name="AnhMH" ColumnName="AnhMH" />
+                <ScalarProperty Name="Ngaycapnhat" ColumnName="Ngaycapnhat" />
+                <ScalarProperty Name="Soluongton" ColumnName="Soluongton" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="MaTH" ColumnName="MaTH" />
+                <ScalarProperty Name="MaXuHuong" ColumnName="MaXuHuong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHANLOAIHANGs">
+            <EntityTypeMapping TypeName="ShopDBModel.PHANLOAIHANG">
+              <MappingFragment StoreEntitySet="PHANLOAIHANG">
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="TenLoaiHang" ColumnName="TenLoaiHang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THUONGHIEUx">
+            <EntityTypeMapping TypeName="ShopDBModel.THUONGHIEU">
+              <MappingFragment StoreEntitySet="THUONGHIEU">
+                <ScalarProperty Name="MaTH" ColumnName="MaTH" />
+                <ScalarProperty Name="TenTH" ColumnName="TenTH" />
+                <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XUHUONGs">
+            <EntityTypeMapping TypeName="ShopDBModel.XUHUONG">
+              <MappingFragment StoreEntitySet="XUHUONG">
+                <ScalarProperty Name="XuHuongId" ColumnName="XuHuongId" />
+                <ScalarProperty Name="XuHuongNam" ColumnName="XuHuongNam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
