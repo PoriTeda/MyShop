@@ -1,0 +1,113 @@
+﻿@model IEnumerable<ProductDataAccess.MATHANG>
+
+@*<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaHang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenHang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Giaban)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnhMH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ngaycapnhat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Soluongton)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaLoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaTH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaXuHuong)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaHang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenHang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Size)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Giaban)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnhMH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ngaycapnhat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soluongton)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaLoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaTH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaXuHuong)
+        </td>
+    </tr>
+}
+
+</table>*@
+@foreach (var item in Model) {
+<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item item">
+					<!-- Block2 -->
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="@Url.Content("~/Images/images/"+@item.AnhMH)" alt="IMG-PRODUCT">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+								Quick View
+							</a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									@item.TenHang
+								</a>
+
+								<span class="stext-105 cl3">
+									@item.Giaban
+								</span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="@Url.Content("~/Images/images/icons/icon-heart-01.png")" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="@Url.Content("~/Images/images/icons/icon-heart-02.png")" alt="ICON">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+}
+<div class="flex-c-m flex-w w-full p-t-45"><button class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04 btn-load btn-load-more">Load More</button></div>

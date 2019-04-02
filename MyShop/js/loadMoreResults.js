@@ -74,8 +74,8 @@
             $list.find(' > ' + opts.tag.name + '.' + opts.tag.class + ':lt(' + (dc) + ')').css("display", "inline-block");
             $list.find(' > ' + opts.tag.name + '.' + opts.tag.class + ':gt(' + (dc - 1) + ')').css("display", "none");
 
-            $list.parent().append('<button class="btn-view ' + opts.button.class + '">' + opts.button.text + '</button>');
-            $list.parent().on("click", ".btn-view", function (e) {
+            //$list.parent().append('<button class="btn-view ' + opts.button.class + '">' + opts.button.text + '</button>');
+            $list.parent().on("click", ".btn-load", function (e) {
                 e.preventDefault();
                 dc = (dc + sc <= lc) ? dc + sc : lc;
 

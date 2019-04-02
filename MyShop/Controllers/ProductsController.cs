@@ -19,11 +19,11 @@ namespace MyShop.Controllers
 
         // GET api/Products
 
-        [BasicAuthentication]
+        
         public IEnumerable<MATHANG> Get()
         {
-            string user = Thread.CurrentPrincipal.Identity.Name;
-            string user = Thread.CurrentPrincipal.;
+            
+            
             using(ShopDBEntities db = new ShopDBEntities())
             {
                 return db.MATHANGs.ToList();
