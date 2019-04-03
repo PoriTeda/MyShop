@@ -74,8 +74,8 @@
             $list.find(' > ' + opts.tag.name + '.' + opts.tag.class + ':lt(' + (dc) + ')').css("display", "inline-block");
             $list.find(' > ' + opts.tag.name + '.' + opts.tag.class + ':gt(' + (dc - 1) + ')').css("display", "none");
 
-            //$list.parent().append('<button class="btn-view ' + opts.button.class + '">' + opts.button.text + '</button>');
-            $list.parent().on("click", ".btn-load", function (e) {
+            $list.parent().append('<div class="flex-c-m flex-w w-full p-t-45"><button class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04 btn-view ' + opts.button.class + '">' + opts.button.text + '</button></div>');
+            $list.parent().on("click", ".btn-view", function (e) {
                 e.preventDefault();
                 dc = (dc + sc <= lc) ? dc + sc : lc;
 

@@ -752,6 +752,22 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="@Url.Content("~/js/main.js")"></script>
 
+    <link href="@Url.Content("~/Content/jquery-ui-1.10.4.custom.min.css")" rel="stylesheet" type="text/css" />
+
+                <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")" type="text/javascript"></script>
+
+                <script src="@Url.Content("~/Scripts/jquery-ui-1.10.4.custom.min.js")" type="text/javascript"></script>
+                
+                <script type="text/javascript">
+
+                    $(function () {
+                        $("#txtSearch").autocomplete({
+                            source: '@Url.Action("GetProducts")'
+                            });
+                        });
+
+                </script>   
+
     <script src="@Url.Content("~/js/loadMoreResults.js")"></script>
     <script>
         $(document).ready(function () {
